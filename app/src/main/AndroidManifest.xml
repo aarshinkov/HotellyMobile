@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Hotelly">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".RootActivity"
+            android:label="@string/title_activity_root"
+            android:theme="@style/Theme.Hotelly.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
