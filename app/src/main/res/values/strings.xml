@@ -15,6 +15,7 @@
     <string name="login_success">Welcome, %1$s!</string>
     <string name="login_bad_credentials">Invalid email/password!</string>
     <string name="logout_success">Logout successful!</string>
+    <string name="login_register">Don\'t have an account? Register</string>
 
     <string name="register_header">Registration</string>
     <string name="register_email">Email</string>

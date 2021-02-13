@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aarshinkov.mobile.hotelly.R;
@@ -41,6 +42,7 @@ public class LoginFragment extends Fragment {
     private EditText loginEmailET;
     private EditText loginPasswordET;
     private Button loginBtn;
+    private TextView loginRegisterTV;
 
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
@@ -57,6 +59,11 @@ public class LoginFragment extends Fragment {
         loginEmailET = root.findViewById(R.id.loginEmailET);
         loginPasswordET = root.findViewById(R.id.loginPasswordET);
         loginBtn = root.findViewById(R.id.loginBtn);
+        loginRegisterTV = root.findViewById(R.id.loginRegisterTV);
+
+        loginRegisterTV.setOnClickListener(v -> {
+            getActivity().findViewById(R.id.nav_view).findViewById(R.id.nav_registration).performClick();
+        });
 
         loginDialog = new ProgressDialog(getContext());
         loginDialog.setMessage("Logging you in...");
