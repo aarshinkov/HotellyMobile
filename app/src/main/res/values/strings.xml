@@ -16,6 +16,16 @@
     <string name="login_bad_credentials">Invalid email/password!</string>
     <string name="logout_success">Logout successful!</string>
 
+    <string name="register_header">Registration</string>
+    <string name="register_email">Email</string>
+    <string name="register_password">Password</string>
+    <string name="register_confirm_password">Confirm password</string>
+    <string name="register_first_name">First name</string>
+    <string name="register_last_name">Last name</string>
+    <string name="register_button">Create an account</string>
+    <string name="register_success">Registration successful!</string>
+    <string name="register_login">Have an account? Login</string>
+
     <string name="title_activity_root">RootActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -23,4 +33,6 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
