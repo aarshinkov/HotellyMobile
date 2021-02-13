@@ -1,0 +1,139 @@
+package com.aarshinkov.mobile.hotelly.activities;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
+import com.aarshinkov.mobile.hotelly.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+
+import static com.aarshinkov.mobile.hotelly.utils.Constants.SHARED_PREF_NAME;
+import static com.aarshinkov.mobile.hotelly.utils.Constants.SHARED_PREF_USER_EMAIL;
+import static com.aarshinkov.mobile.hotelly.utils.Constants.SHARED_PREF_USER_FIRST_NAME;
+import static com.aarshinkov.mobile.hotelly.utils.Constants.SHARED_PREF_USER_LAST_NAME;
+import static com.aarshinkov.mobile.hotelly.utils.Utils.isLoggedIn;
+
+public class RootActivity extends AppCompatActivity {
+
+    private AppBarConfiguration mAppBarConfiguration;
+
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_root);
+
+        pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        if (isLoggedIn(pref)) {
+            String email = pref.getString(SHARED_PREF_USER_EMAIL, "");
+            String firstName = pref.getString(SHARED_PREF_USER_FIRST_NAME, "");
+            String lastName = pref.getString(SHARED_PREF_USER_LAST_NAME, "");
+
+            navigationView.getHeaderView(0).setVisibility(View.VISIBLE);
+
+            ImageView headerImage = navigationView.getHeaderView(0).findViewById(R.id.header_image);
+            TextView headerFullName = navigationView.getHeaderView(0).findViewById(R.id.header_name);
+            TextView headerEmail = navigationView.getHeaderView(0).findViewById(R.id.header_email);
+
+            String fullName = lastName != null ? firstName + " " + lastName : firstName;
+            headerFullName.setText(fullName);
+            headerEmail.setText(email);
+
+            navigationView.getMenu().findItem(R.id.nav_login_group).setVisible(false);
+            navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
+
+            navigationView.getMenu().findItem(R.id.nav_logout).setOnMenuItemClickListener(item -> {
+//                Toast.makeText(getApplicationContext(), "Logout", Toast.LENGTH_LONG).show();
+                logout();
+                return true;
+            });
+
+            headerImage.setOnClickListener(v -> {
+//                profile();
+            });
+
+            headerFullName.setOnClickListener(v -> {
+//                profile();
+            });
+
+            headerEmail.setOnClickListener(v -> {
+//                profile();
+            });
+        } else {
+            navigationView.getHeaderView(0).setVisibility(View.GONE);
+            navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
+        }
+
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_hotels)
+                .setOpenableLayout(drawer)
+                .build();
+
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.root, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
+
+    private void logout() {
+        Intent intent = new Intent(getApplicationContext(), RootActivity.class);
+
+        pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        editor = pref.edit();
+        editor.clear();
+        editor.apply();
+
+        Toast.makeText(getApplicationContext(), getString(R.string.logout_success), Toast.LENGTH_LONG).show();
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+}

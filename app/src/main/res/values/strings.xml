@@ -8,6 +8,14 @@
     <string name="menu_register">Register</string>
     <string name="menu_logout">Logout</string>
 
+    <string name="login_header">Login</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_button">Login</string>
+    <string name="login_success">Welcome, %1$s!</string>
+    <string name="login_bad_credentials">Invalid email/password!</string>
+    <string name="logout_success">Logout successful!</string>
+
     <string name="title_activity_root">RootActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
