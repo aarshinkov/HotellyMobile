@@ -21,28 +21,48 @@
             app:layout_constraintStart_toStartOf="@+id/loginLeftGuide"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/loginEmailIV"
+            android:layout_width="30dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/ic_email"
+            app:layout_constraintStart_toStartOf="@+id/loginLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/loginHeaderTV" />
+
         <EditText
             android:id="@+id/loginEmailET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:ems="10"
             android:hint="@string/login_email"
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toStartOf="@+id/loginRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/loginLeftGuide"
+            app:layout_constraintStart_toEndOf="@+id/loginEmailIV"
             app:layout_constraintTop_toBottomOf="@+id/loginHeaderTV" />
+
+        <ImageView
+            android:id="@+id/loginPasswordIV"
+            android:layout_width="30dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_lock_open"
+            app:layout_constraintStart_toStartOf="@+id/loginLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/loginEmailIV" />
 
         <EditText
             android:id="@+id/loginPasswordET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/login_password"
             android:inputType="textPassword"
             app:layout_constraintEnd_toStartOf="@+id/loginRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/loginLeftGuide"
+            app:layout_constraintStart_toEndOf="@+id/loginPasswordIV"
             app:layout_constraintTop_toBottomOf="@+id/loginEmailET" />
 
         <Button

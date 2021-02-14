@@ -21,64 +21,114 @@
             app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/registerEmailIV"
+            android:layout_width="30dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/ic_email"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/registerHeaderTV" />
+
         <EditText
             android:id="@+id/registerEmailET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:ems="10"
             android:hint="@string/register_email"
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toStartOf="@+id/registerRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
+            app:layout_constraintStart_toEndOf="@+id/registerEmailIV"
             app:layout_constraintTop_toBottomOf="@+id/registerHeaderTV" />
+
+        <ImageView
+            android:id="@+id/registerPasswordIV"
+            android:layout_width="30dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_lock_open"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/registerEmailIV" />
 
         <EditText
             android:id="@+id/registerPasswordET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/register_password"
             android:inputType="textPassword"
             app:layout_constraintEnd_toStartOf="@+id/registerRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
+            app:layout_constraintStart_toEndOf="@+id/registerPasswordIV"
             app:layout_constraintTop_toBottomOf="@+id/registerEmailET" />
+
+        <ImageView
+            android:id="@+id/registerConfirmPasswordIV"
+            android:layout_width="30dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_lock"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/registerPasswordIV" />
 
         <EditText
             android:id="@+id/registerConfirmPasswordET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/register_confirm_password"
             android:inputType="textPassword"
             app:layout_constraintEnd_toStartOf="@+id/registerRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
+            app:layout_constraintStart_toEndOf="@+id/registerConfirmPasswordIV"
             app:layout_constraintTop_toBottomOf="@+id/registerPasswordET" />
+
+        <ImageView
+            android:id="@+id/registerFirstNameIV"
+            android:layout_width="30dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_user"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/registerConfirmPasswordIV" />
 
         <EditText
             android:id="@+id/registerFirstNameET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/register_first_name"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toStartOf="@+id/registerRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
+            app:layout_constraintStart_toEndOf="@+id/registerFirstNameIV"
             app:layout_constraintTop_toBottomOf="@+id/registerConfirmPasswordET" />
+
+        <ImageView
+            android:id="@+id/registerLastNameIV"
+            android:layout_width="30dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_person"
+            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/registerFirstNameIV" />
 
         <EditText
             android:id="@+id/registerLastNameET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/register_last_name"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toStartOf="@+id/registerRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/registerLeftGuide"
+            app:layout_constraintStart_toEndOf="@+id/registerLastNameIV"
             app:layout_constraintTop_toBottomOf="@+id/registerFirstNameET" />
 
         <Button
