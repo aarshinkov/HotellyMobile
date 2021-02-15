@@ -126,7 +126,7 @@ public class LoginFragment extends Fragment {
 
                 @Override
                 public void onFailure(Call<LoginResponse> call, Throwable t) {
-                    Toast.makeText(getContext(), "SOME ERROR", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Error communicating with the server. Please try again or contact us!", Toast.LENGTH_LONG).show();
                     Log.e("ERROR", "onFailure: ", t);
                     loginDialog.hide();
                 }
