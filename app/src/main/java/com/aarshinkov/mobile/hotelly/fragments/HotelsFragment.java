@@ -73,15 +73,4 @@ public class HotelsFragment extends Fragment {
 
         return root;
     }
-
-    private List<String> getHotels() {
-
-        List<String> hotels = new ArrayList<>();
-        hotels.add("Hotel 1");
-        hotels.add("Hotel 2");
-        hotels.add("Hotel 3");
-        hotels.add("Hotel 4");
-
-        return hotels;
-    }
 }

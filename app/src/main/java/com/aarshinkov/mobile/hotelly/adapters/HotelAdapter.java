@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,8 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aarshinkov.mobile.hotelly.R;
 import com.aarshinkov.mobile.hotelly.responses.hotels.HotelGetResponse;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import static com.aarshinkov.mobile.hotelly.utils.Constants.BASE_URL;
 
 public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> {
 
@@ -39,6 +43,10 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
         HotelGetResponse hotel = data.get(position);
         String name = hotel.getName();
         holder.getHotelName().setText(name);
+
+        String imageUrl = BASE_URL + "images/hotels/" + hotel.getMainImage();
+        Picasso.get().load(imageUrl).into(holder.getHotelImage());
+
         holder.getCardView().setOnClickListener(v -> {
 //            Intent intent = new Intent(v.getContext(), RootActivity.class);
 //            v.getContext().startActivity(intent);
@@ -53,21 +61,29 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView hotelName;
+        // The layout wrapper
         private final CardView cardView;
+        private final TextView hotelName;
+        private final ImageView hotelImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            hotelName = itemView.findViewById(R.id.hotelName);
             cardView = itemView.findViewById(R.id.hotel_card);
+
+            hotelName = itemView.findViewById(R.id.hotelName);
+            hotelImage = itemView.findViewById(R.id.hotelImage);
+        }
+
+        public CardView getCardView() {
+            return cardView;
         }
 
         public TextView getHotelName() {
             return hotelName;
         }
 
-        public CardView getCardView() {
-            return cardView;
+        public ImageView getHotelImage() {
+            return hotelImage;
         }
     }
 }
