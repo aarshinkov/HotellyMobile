@@ -4,9 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aarshinkov.mobile.hotelly.R;
@@ -35,8 +38,10 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
 
         String name = data.get(position);
         holder.getHotelName().setText(name);
-
-
+        holder.getCardView().setOnClickListener(v -> {
+//            Toast.makeText(v.getContext(), "Test", Toast.LENGTH_SHORT).show();
+            Toast.makeText(v.getContext(), data.get(position), Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override
@@ -47,14 +52,20 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView hotelName;
+        private CardView cardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             hotelName = itemView.findViewById(R.id.hotelName);
+            cardView = itemView.findViewById(R.id.hotel_card);
         }
 
         public TextView getHotelName() {
             return hotelName;
+        }
+
+        public CardView getCardView() {
+            return cardView;
         }
     }
 }

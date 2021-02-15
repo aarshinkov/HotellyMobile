@@ -7,13 +7,14 @@
     android:background="#FFFFFF">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/hotel_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:clickable="false"
+        android:clickable="true"
         android:focusable="false"
         android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
