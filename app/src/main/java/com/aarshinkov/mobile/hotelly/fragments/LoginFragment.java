@@ -103,19 +103,13 @@ public class LoginFragment extends Fragment {
                 @Override
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
-//                    if (!response.isSuccessful()) {
-//                        Toast.makeText(getContext(), R.string.login_bad_credentials, Toast.LENGTH_LONG).show();
-//                        loginDialog.hide();
-//                        return;
-//                    }
-
-                    LoginResponse loginResponse = response.body();
-
-                    if (loginResponse.getUserId() == null || loginResponse.getUserId().isEmpty()) {
+                    if (!response.isSuccessful()) {
                         Toast.makeText(getContext(), R.string.login_bad_credentials, Toast.LENGTH_LONG).show();
                         loginDialog.hide();
                         return;
                     }
+
+                    LoginResponse loginResponse = response.body();
 
                     editor.putString(SHARED_PREF_USER_ID, loginResponse.getUserId());
                     editor.putString(SHARED_PREF_USER_EMAIL, loginResponse.getEmail());
