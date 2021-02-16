@@ -1,6 +1,7 @@
 package com.aarshinkov.mobile.hotelly.fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +15,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aarshinkov.mobile.hotelly.R;
+import com.aarshinkov.mobile.hotelly.activities.HotelCreateActivity;
 import com.aarshinkov.mobile.hotelly.adapters.HotelAdapter;
 import com.aarshinkov.mobile.hotelly.api.HotelsApi;
 import com.aarshinkov.mobile.hotelly.responses.hotels.HotelGetResponse;
 import com.aarshinkov.mobile.hotelly.utils.Api;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +36,9 @@ public class HotelsFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private HotelAdapter hotelAdapter;
-    private List<HotelGetResponse> hotels;
     private TextView hotelsCountTV;
+    private List<HotelGetResponse> hotels;
+    private FloatingActionButton hotelsAddHotelFAB;
     private ProgressDialog loadingDialog;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,6 +49,7 @@ public class HotelsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         hotelsCountTV = root.findViewById(R.id.hotelsCountTV);
+        hotelsAddHotelFAB = root.findViewById(R.id.hotelsAddHotelFAB);
 
         hotels = new ArrayList<>();
         hotelAdapter = new HotelAdapter(getContext(), hotels);
@@ -73,6 +80,12 @@ public class HotelsFragment extends Fragment {
                 hotelsCountTV.setText("0");
                 loadingDialog.hide();
             }
+        });
+
+        hotelsAddHotelFAB.setOnClickListener(v -> {
+            Snackbar.make(v, "Here", BaseTransientBottomBar.LENGTH_LONG).show();
+            Intent intent = new Intent(getContext(), HotelCreateActivity.class);
+            startActivity(intent);
         });
 
         return root;
