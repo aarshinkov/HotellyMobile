@@ -2,17 +2,16 @@ package com.aarshinkov.mobile.hotelly.fragments;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.aarshinkov.mobile.hotelly.R;
 import com.aarshinkov.mobile.hotelly.adapters.HotelAdapter;
@@ -33,6 +32,7 @@ public class HotelsFragment extends Fragment {
     private RecyclerView recyclerView;
     private HotelAdapter hotelAdapter;
     private List<HotelGetResponse> hotels;
+    private TextView hotelsCountTV;
     private ProgressDialog loadingDialog;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +41,8 @@ public class HotelsFragment extends Fragment {
 
         recyclerView = root.findViewById(R.id.hotels);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        hotelsCountTV = root.findViewById(R.id.hotelsCountTV);
 
         hotels = new ArrayList<>();
         hotelAdapter = new HotelAdapter(getContext(), hotels);
@@ -61,12 +63,14 @@ public class HotelsFragment extends Fragment {
 
                 hotels.addAll(storedHotels);
                 hotelAdapter.notifyDataSetChanged();
+                hotelsCountTV.setText(String.valueOf(hotelAdapter.getItemCount()));
                 loadingDialog.hide();
             }
 
             @Override
             public void onFailure(Call<List<HotelGetResponse>> call, Throwable t) {
                 Toast.makeText(getContext(), "Error getting hotels", Toast.LENGTH_SHORT).show();
+                hotelsCountTV.setText("0");
                 loadingDialog.hide();
             }
         });
