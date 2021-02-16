@@ -17,7 +17,9 @@ import com.aarshinkov.mobile.hotelly.R;
 import com.aarshinkov.mobile.hotelly.responses.hotels.HotelGetResponse;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import static com.aarshinkov.mobile.hotelly.utils.Constants.BASE_URL;
 
@@ -53,6 +55,10 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
         holder.getHotelStars().setNumStars(hotel.getStars());
         holder.getHotelCity().setText(hotel.getAddress().getCity());
 
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+        String strDate = formatter.format(hotel.getCreatedOn());
+        holder.getHotelCreatedOn().setText(strDate);
+
         holder.getCardView().setOnClickListener(v -> {
 //            Intent intent = new Intent(v.getContext(), RootActivity.class);
 //            v.getContext().startActivity(intent);
@@ -73,6 +79,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
         private final TextView hotelName;
         private final RatingBar hotelStars;
         private final TextView hotelCity;
+        private final TextView hotelCreatedOn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -82,6 +89,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
             hotelName = itemView.findViewById(R.id.hotelName);
             hotelStars = itemView.findViewById(R.id.hotelStars);
             hotelCity = itemView.findViewById(R.id.hotelCity);
+            hotelCreatedOn = itemView.findViewById(R.id.hotelCreatedOn);
         }
 
         public CardView getCardView() {
@@ -102,6 +110,10 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
 
         public TextView getHotelCity() {
             return hotelCity;
+        }
+
+        public TextView getHotelCreatedOn() {
+            return hotelCreatedOn;
         }
     }
 }
