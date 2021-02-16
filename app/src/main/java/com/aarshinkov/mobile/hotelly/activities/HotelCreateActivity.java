@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.aarshinkov.mobile.hotelly.R;
 
@@ -17,7 +19,6 @@ public class HotelCreateActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Create a hotel");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
     }
 

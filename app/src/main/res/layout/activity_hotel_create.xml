@@ -1,7 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.HotelCreateActivity"/>
+    tools:context=".activities.HotelCreateActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/hotelCreateNameET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <Spinner
+            android:id="@+id/hotelCreateCountrySpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:entries="@array/countries"
+            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/hotelCreateNameET" />
+
+        <EditText
+            android:id="@+id/hotelCreateCityET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="City"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/hotelCreateCountrySpinner" />
+
+        <EditText
+            android:id="@+id/hotelCreateStreetET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Street"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/hotelCreateCityET" />
+
+        <EditText
+            android:id="@+id/hotelCreateNumberET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
+            android:ems="10"
+            android:hint="Number"
+            android:inputType="number"
+            app:layout_constraintEnd_toStartOf="@+id/hotelCreateCenterGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/hotelCreateStreetET" />
+
+        <EditText
+            android:id="@+id/hotelCreateStarsET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Stars"
+            android:inputType="number"
+            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelCreateCenterGuide"
+            app:layout_constraintTop_toBottomOf="@+id/hotelCreateStreetET" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/hotelCreateLeftGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/hotelCreateCenterGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/hotelCreateRightGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/side_nav_bar"
+            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/hotelCreateBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/primary"
+            android:text="Create a hotel"
+            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/hotelCreateNumberET" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
