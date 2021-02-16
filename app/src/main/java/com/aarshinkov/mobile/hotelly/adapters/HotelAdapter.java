@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,16 +42,21 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         HotelGetResponse hotel = data.get(position);
+
         String name = hotel.getName();
         holder.getHotelName().setText(name);
 
         String imageUrl = BASE_URL + "images/hotels/" + hotel.getMainImage();
         Picasso.get().load(imageUrl).into(holder.getHotelImage());
 
+        holder.getHotelStars().setRating(20);
+        holder.getHotelStars().setNumStars(hotel.getStars());
+        holder.getHotelCity().setText(hotel.getAddress().getCity());
+
         holder.getCardView().setOnClickListener(v -> {
 //            Intent intent = new Intent(v.getContext(), RootActivity.class);
 //            v.getContext().startActivity(intent);
-            Toast.makeText(v.getContext(), name, Toast.LENGTH_SHORT).show();
+            Toast.makeText(v.getContext(), hotel.getHotelId(), Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -63,27 +69,39 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
 
         // The layout wrapper
         private final CardView cardView;
-        private final TextView hotelName;
         private final ImageView hotelImage;
+        private final TextView hotelName;
+        private final RatingBar hotelStars;
+        private final TextView hotelCity;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.hotel_card);
 
-            hotelName = itemView.findViewById(R.id.hotelName);
             hotelImage = itemView.findViewById(R.id.hotelImage);
+            hotelName = itemView.findViewById(R.id.hotelName);
+            hotelStars = itemView.findViewById(R.id.hotelStars);
+            hotelCity = itemView.findViewById(R.id.hotelCity);
         }
 
         public CardView getCardView() {
             return cardView;
         }
 
+        public ImageView getHotelImage() {
+            return hotelImage;
+        }
+
         public TextView getHotelName() {
             return hotelName;
         }
 
-        public ImageView getHotelImage() {
-            return hotelImage;
+        public RatingBar getHotelStars() {
+            return hotelStars;
+        }
+
+        public TextView getHotelCity() {
+            return hotelCity;
         }
     }
 }

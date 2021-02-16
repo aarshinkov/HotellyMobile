@@ -15,7 +15,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
-        android:focusable="false"
+        android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +24,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content" >
 
             <ImageView
                 android:id="@+id/hotelImage"
@@ -41,14 +41,38 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:padding="8dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/hotelImage"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Name" />
+
+            <RatingBar
+                android:id="@+id/hotelStars"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:numStars="5"
+                android:progressTint="#FFBB00"
+                android:rating="10"
+                android:secondaryProgressTint="#FFBB00"
+                app:layout_constraintBottom_toBottomOf="@+id/hotelCity"
+                app:layout_constraintStart_toEndOf="@+id/hotelImage" />
+
+            <TextView
+                android:id="@+id/hotelCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hotelName"
+                tools:text="City" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
