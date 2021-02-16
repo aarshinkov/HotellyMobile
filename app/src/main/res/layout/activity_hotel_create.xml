@@ -11,6 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/hotelCreateImageIV"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/side_nav_bar"
+            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <EditText
             android:id="@+id/hotelCreateNameET"
             android:layout_width="0dp"
@@ -21,7 +31,7 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/hotelCreateImageIV" />
 
         <Spinner
             android:id="@+id/hotelCreateCountrySpinner"
@@ -84,6 +94,17 @@
             app:layout_constraintStart_toStartOf="@+id/hotelCreateCenterGuide"
             app:layout_constraintTop_toBottomOf="@+id/hotelCreateStreetET" />
 
+        <Button
+            android:id="@+id/hotelCreateBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/primary"
+            android:text="Create a hotel"
+            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/hotelCreateNumberET" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/hotelCreateLeftGuide"
             android:layout_width="wrap_content"
@@ -104,27 +125,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="16dp" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/side_nav_bar"
-            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/hotelCreateBtn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/primary"
-            android:text="Create a hotel"
-            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/hotelCreateNumberET" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
