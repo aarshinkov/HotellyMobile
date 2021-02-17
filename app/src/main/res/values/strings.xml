@@ -35,6 +35,8 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+    <string name="country_bg">Bulgaria</string>
+
     <string-array name="countries">
         <item>Bulgaria</item>
         <item>Greece</item>

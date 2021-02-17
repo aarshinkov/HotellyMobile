@@ -15,6 +15,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".activities.HotelActivity"
+            android:parentActivityName=".activities.RootActivity" />
+        <activity
             android:name=".activities.HotelCreateActivity"
             android:parentActivityName=".activities.RootActivity" />
         <activity

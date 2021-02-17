@@ -1,19 +1,20 @@
 package com.aarshinkov.mobile.hotelly.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aarshinkov.mobile.hotelly.R;
+import com.aarshinkov.mobile.hotelly.activities.HotelActivity;
 import com.aarshinkov.mobile.hotelly.responses.hotels.HotelGetResponse;
 import com.squareup.picasso.Picasso;
 
@@ -46,23 +47,23 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
         HotelGetResponse hotel = data.get(position);
 
         String name = hotel.getName();
-        holder.getHotelName().setText(name);
+        holder.getHotelsNameTV().setText(name);
 
         String imageUrl = BASE_URL + "images/hotels/" + hotel.getMainImage();
-        Picasso.get().load(imageUrl).into(holder.getHotelImage());
+        Picasso.get().load(imageUrl).into(holder.getHotelsImageIV());
 
-        holder.getHotelStars().setRating(20);
-        holder.getHotelStars().setNumStars(hotel.getStars());
-        holder.getHotelCity().setText(hotel.getAddress().getCity());
+        holder.getHotelsStarsRB().setRating(20);
+        holder.getHotelsStarsRB().setNumStars(hotel.getStars());
+        holder.getHotelsCityTV().setText(hotel.getAddress().getCity());
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
         String strDate = formatter.format(hotel.getCreatedOn());
-        holder.getHotelCreatedOn().setText(strDate);
+        holder.getHotelsCreatedOnTV().setText(strDate);
 
         holder.getCardView().setOnClickListener(v -> {
-//            Intent intent = new Intent(v.getContext(), RootActivity.class);
-//            v.getContext().startActivity(intent);
-            Toast.makeText(v.getContext(), hotel.getHotelId(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(v.getContext(), HotelActivity.class);
+            intent.putExtra("hotelId", hotel.getHotelId());
+            v.getContext().startActivity(intent);
         });
     }
 
@@ -75,45 +76,45 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
 
         // The layout wrapper
         private final CardView cardView;
-        private final ImageView hotelImage;
-        private final TextView hotelName;
-        private final RatingBar hotelStars;
-        private final TextView hotelCity;
-        private final TextView hotelCreatedOn;
+        private final ImageView hotelsImageIV;
+        private final TextView hotelsNameTV;
+        private final RatingBar hotelsStarsRB;
+        private final TextView hotelsCityTV;
+        private final TextView hotelsCreatedOnTV;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.hotel_card);
 
-            hotelImage = itemView.findViewById(R.id.hotelImage);
-            hotelName = itemView.findViewById(R.id.hotelName);
-            hotelStars = itemView.findViewById(R.id.hotelStars);
-            hotelCity = itemView.findViewById(R.id.hotelCity);
-            hotelCreatedOn = itemView.findViewById(R.id.hotelCreatedOn);
+            hotelsImageIV = itemView.findViewById(R.id.hotelsImageIV);
+            hotelsNameTV = itemView.findViewById(R.id.hotelsNameTV);
+            hotelsStarsRB = itemView.findViewById(R.id.hotelsStarsRB);
+            hotelsCityTV = itemView.findViewById(R.id.hotelsCityTV);
+            hotelsCreatedOnTV = itemView.findViewById(R.id.hotelsCreatedOnTV);
         }
 
         public CardView getCardView() {
             return cardView;
         }
 
-        public ImageView getHotelImage() {
-            return hotelImage;
+        public ImageView getHotelsImageIV() {
+            return hotelsImageIV;
         }
 
-        public TextView getHotelName() {
-            return hotelName;
+        public TextView getHotelsNameTV() {
+            return hotelsNameTV;
         }
 
-        public RatingBar getHotelStars() {
-            return hotelStars;
+        public RatingBar getHotelsStarsRB() {
+            return hotelsStarsRB;
         }
 
-        public TextView getHotelCity() {
-            return hotelCity;
+        public TextView getHotelsCityTV() {
+            return hotelsCityTV;
         }
 
-        public TextView getHotelCreatedOn() {
-            return hotelCreatedOn;
+        public TextView getHotelsCreatedOnTV() {
+            return hotelsCreatedOnTV;
         }
     }
 }
