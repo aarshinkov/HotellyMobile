@@ -6,14 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".fragments.HotelsFragment">
 
-    <TextView
-        android:id="@+id/textView"
+    <SearchView
+        android:id="@+id/hotelsSV"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/hotelsCountLabelTV"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Hotels found:"
         app:layout_constraintStart_toStartOf="@+id/hotelsGuideLeft"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/hotelsSV" />
 
     <TextView
         android:id="@+id/hotelsCountTV"
@@ -22,27 +31,47 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="0"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/hotelsCountLabelTV"
+        app:layout_constraintTop_toBottomOf="@+id/hotelsSV" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/hotels"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/hotelsAddHotelFAB"
+        app:layout_constraintBottom_toTopOf="@+id/hotelsButtonsBarrier"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/hotelsCountLabelTV" >
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/hotelsAddHotelFAB"
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/hotelsButtonsBarrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/primary"
-        android:clickable="true"
-        android:src="@drawable/ic_plus"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="hotelsCheckBtn,hotelsAddHotelBtn"
+        tools:layout_editor_absoluteY="83dp" />
+
+    <Button
+        android:id="@+id/hotelsCheckBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check for changes"
+        android:textSize="10sp"
+        app:icon="@drawable/ic_refresh"
+        app:iconSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/hotelsGuideLeft" />
+
+    <Button
+        android:id="@+id/hotelsAddHotelBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add hotel"
+        android:textSize="10sp"
+        app:icon="@drawable/ic_plus"
+        app:iconSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/hotelsGuideRight" />
 

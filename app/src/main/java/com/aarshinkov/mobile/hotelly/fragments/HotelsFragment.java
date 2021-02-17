@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +39,8 @@ public class HotelsFragment extends Fragment {
     private HotelAdapter hotelAdapter;
     private TextView hotelsCountTV;
     private List<HotelGetResponse> hotels;
-    private FloatingActionButton hotelsAddHotelFAB;
+    private Button hotelsCheckBtn;
+    private Button hotelsAddHotelBtn;
     private ProgressDialog loadingDialog;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,7 +51,8 @@ public class HotelsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         hotelsCountTV = root.findViewById(R.id.hotelsCountTV);
-        hotelsAddHotelFAB = root.findViewById(R.id.hotelsAddHotelFAB);
+        hotelsCheckBtn = root.findViewById(R.id.hotelsCheckBtn);
+        hotelsAddHotelBtn = root.findViewById(R.id.hotelsAddHotelBtn);
 
         hotels = new ArrayList<>();
         hotelAdapter = new HotelAdapter(getContext(), hotels);
@@ -82,8 +85,8 @@ public class HotelsFragment extends Fragment {
             }
         });
 
-        hotelsAddHotelFAB.setOnClickListener(v -> {
-            Snackbar.make(v, "Here", BaseTransientBottomBar.LENGTH_LONG).show();
+        hotelsAddHotelBtn.setOnClickListener(v -> {
+//            Snackbar.make(v, "Here", BaseTransientBottomBar.LENGTH_LONG).show();
             Intent intent = new Intent(getContext(), HotelCreateActivity.class);
             startActivity(intent);
         });
