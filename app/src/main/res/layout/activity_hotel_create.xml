@@ -15,10 +15,10 @@
             android:id="@+id/hotelCreateImageIV"
             android:layout_width="0dp"
             android:layout_height="200dp"
-            android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/side_nav_bar"
-            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
@@ -103,7 +103,7 @@
             android:text="Create a hotel"
             app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/hotelCreateNumberET" />
+            app:layout_constraintTop_toBottomOf="@+id/hotelCreateDescriptionET" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/hotelCreateLeftGuide"
@@ -125,6 +125,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="16dp" />
+
+        <EditText
+            android:id="@+id/hotelCreateDescriptionET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Description"
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/hotelCreateNumberET" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

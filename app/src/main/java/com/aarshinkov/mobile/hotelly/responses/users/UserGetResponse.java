@@ -12,6 +12,10 @@ public class UserGetResponse implements Serializable {
     private Timestamp createdOn;
     private Timestamp editedOn;
 
+    public String getFullName() {
+        return lastName != null ? firstName + " " + lastName : firstName;
+    }
+
     public String getUserId() {
         return userId;
     }

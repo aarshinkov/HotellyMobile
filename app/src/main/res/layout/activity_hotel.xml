@@ -59,8 +59,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/hotelRightGuide"
             app:layout_constraintStart_toStartOf="@+id/hotelLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/hotelDivider"
@@ -98,6 +96,20 @@
             app:layout_constraintStart_toStartOf="@+id/hotelLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/hotelStarsRB"
             app:srcCompat="@drawable/ic_location" />
+
+        <Button
+            android:id="@+id/hotelCheckBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Check for changes"
+            android:textSize="10sp"
+            app:icon="@drawable/ic_refresh"
+            app:iconSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/hotelRightGuide"
+            app:layout_constraintTop_toBottomOf="@+id/hotelDescriptionTV" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

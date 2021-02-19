@@ -4,10 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +13,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import com.aarshinkov.mobile.hotelly.R;
 import com.aarshinkov.mobile.hotelly.activities.RootActivity;
 import com.aarshinkov.mobile.hotelly.api.AuthApi;
 import com.aarshinkov.mobile.hotelly.requests.LoginRequest;
 import com.aarshinkov.mobile.hotelly.responses.LoginResponse;
+import com.aarshinkov.mobile.hotelly.responses.users.UserGetResponse;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,10 +33,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static android.content.Context.MODE_PRIVATE;
 import static com.aarshinkov.mobile.hotelly.utils.Constants.API_URL;
 import static com.aarshinkov.mobile.hotelly.utils.Constants.SHARED_PREF_NAME;
-import static com.aarshinkov.mobile.hotelly.utils.Constants.SHARED_PREF_USER_EMAIL;
-import static com.aarshinkov.mobile.hotelly.utils.Constants.SHARED_PREF_USER_FIRST_NAME;
-import static com.aarshinkov.mobile.hotelly.utils.Constants.SHARED_PREF_USER_ID;
-import static com.aarshinkov.mobile.hotelly.utils.Constants.SHARED_PREF_USER_LAST_NAME;
+import static com.aarshinkov.mobile.hotelly.utils.Constants.SHARED_PREF_USER;
 
 public class LoginFragment extends Fragment {
 
@@ -111,10 +109,16 @@ public class LoginFragment extends Fragment {
 
                     LoginResponse loginResponse = response.body();
 
-                    editor.putString(SHARED_PREF_USER_ID, loginResponse.getUserId());
-                    editor.putString(SHARED_PREF_USER_EMAIL, loginResponse.getEmail());
-                    editor.putString(SHARED_PREF_USER_FIRST_NAME, loginResponse.getFirstName());
-                    editor.putString(SHARED_PREF_USER_LAST_NAME, loginResponse.getLastName());
+                    UserGetResponse ugr = new UserGetResponse();
+                    ugr.setUserId(loginResponse.getUserId());
+                    ugr.setEmail(loginResponse.getEmail());
+                    ugr.setFirstName(loginResponse.getFirstName());
+                    ugr.setLastName(loginResponse.getLastName());
+
+                    Gson gson = new Gson();
+                    String json = gson.toJson(ugr);
+
+                    editor.putString(SHARED_PREF_USER, json);
                     editor.apply();
 
                     loginDialog.hide();

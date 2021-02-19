@@ -27,6 +27,9 @@
     <string name="register_success">Registration successful!</string>
     <string name="register_login">Have an account? Login</string>
 
+    <string name="hotel_action_edit">Edit</string>
+    <string name="hotel_action_delete">Delete</string>
+
     <string name="title_activity_root">RootActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -38,11 +41,11 @@
     <string name="country_bg">Bulgaria</string>
 
     <string-array name="countries">
-        <item>Bulgaria</item>
-        <item>Greece</item>
-        <item>North Macedonia</item>
-        <item>Romania</item>
-        <item>Serbia</item>
-        <item>Turkey</item>
+        <item name="bg">Bulgaria</item>
+        <item name="gr">Greece</item>
+        <item name="mk">North Macedonia</item>
+        <item name="ro">Romania</item>
+        <item name="rs">Serbia</item>
+        <item name="tr">Turkey</item>
     </string-array>
 </resources>

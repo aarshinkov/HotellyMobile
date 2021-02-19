@@ -51,7 +51,7 @@ public class HotelsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         hotelsCountTV = root.findViewById(R.id.hotelsCountTV);
-        hotelsCheckBtn = root.findViewById(R.id.hotelsCheckBtn);
+//        hotelsCheckBtn = root.findViewById(R.id.hotelsCheckBtn);
         hotelsAddHotelBtn = root.findViewById(R.id.hotelsAddHotelBtn);
 
         hotels = new ArrayList<>();
@@ -59,6 +59,7 @@ public class HotelsFragment extends Fragment {
         recyclerView.setAdapter(hotelAdapter);
 
         loadingDialog = new ProgressDialog(getContext());
+        loadingDialog.setCanceledOnTouchOutside(false);
         loadingDialog.setMessage("Loading hotels...");
         loadingDialog.show();
 

@@ -18,13 +18,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.aarshinkov.mobile.hotelly.R;
+import com.aarshinkov.mobile.hotelly.responses.users.UserGetResponse;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import static com.aarshinkov.mobile.hotelly.utils.Constants.SHARED_PREF_NAME;
-import static com.aarshinkov.mobile.hotelly.utils.Constants.SHARED_PREF_USER_EMAIL;
-import static com.aarshinkov.mobile.hotelly.utils.Constants.SHARED_PREF_USER_FIRST_NAME;
-import static com.aarshinkov.mobile.hotelly.utils.Constants.SHARED_PREF_USER_LAST_NAME;
+import static com.aarshinkov.mobile.hotelly.utils.Utils.getLoggedUser;
 import static com.aarshinkov.mobile.hotelly.utils.Utils.isLoggedIn;
 
 public class RootActivity extends AppCompatActivity {
@@ -58,9 +57,8 @@ public class RootActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         if (isLoggedIn(pref)) {
-            String email = pref.getString(SHARED_PREF_USER_EMAIL, "");
-            String firstName = pref.getString(SHARED_PREF_USER_FIRST_NAME, "");
-            String lastName = pref.getString(SHARED_PREF_USER_LAST_NAME, "");
+
+            UserGetResponse loggedUser = getLoggedUser(pref);
 
             navigationView.getHeaderView(0).setVisibility(View.VISIBLE);
 
@@ -68,9 +66,8 @@ public class RootActivity extends AppCompatActivity {
             TextView headerFullName = navigationView.getHeaderView(0).findViewById(R.id.header_name);
             TextView headerEmail = navigationView.getHeaderView(0).findViewById(R.id.header_email);
 
-            String fullName = lastName != null ? firstName + " " + lastName : firstName;
-            headerFullName.setText(fullName);
-            headerEmail.setText(email);
+            headerFullName.setText(loggedUser.getFullName());
+            headerEmail.setText(loggedUser.getEmail());
 
             navigationView.getMenu().findItem(R.id.nav_login_group).setVisible(false);
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);

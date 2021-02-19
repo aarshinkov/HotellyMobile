@@ -8,11 +8,10 @@ import static com.aarshinkov.mobile.hotelly.utils.Constants.API_URL;
 public class Api {
 
     public static Retrofit getRetrofit() {
-        Retrofit retrofit = new Retrofit.Builder()
+
+        return new Retrofit.Builder()
                 .baseUrl(API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
-        return retrofit;
     }
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -21,4 +22,7 @@ public interface HotelsApi {
 
     @POST("api/hotels")
     Call<HotelGetResponse> createHotel(@Body HotelCreateRequest hcr);
+
+    @DELETE("api/hotels/{hotelId}")
+    Call<Boolean> deleteHotel(@Path("hotelId") String hotelId);
 }

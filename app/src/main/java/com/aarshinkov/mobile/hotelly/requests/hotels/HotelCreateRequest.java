@@ -5,12 +5,13 @@ import java.io.Serializable;
 public class HotelCreateRequest implements Serializable {
 
     private String name;
+    private String description;
     private String countryCode;
     private String city;
     private String street;
     private Integer number;
     private Integer stars;
-    private String mainImage;
+    private byte[] mainImage;
     private String userId;
 
     public String getName() {
@@ -19,6 +20,14 @@ public class HotelCreateRequest implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getCountryCode() {
@@ -61,11 +70,11 @@ public class HotelCreateRequest implements Serializable {
         this.stars = stars;
     }
 
-    public String getMainImage() {
+    public byte[] getMainImage() {
         return mainImage;
     }
 
-    public void setMainImage(String mainImage) {
+    public void setMainImage(byte[] mainImage) {
         this.mainImage = mainImage;
     }
 

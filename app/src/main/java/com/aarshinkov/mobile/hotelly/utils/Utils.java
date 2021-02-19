@@ -2,14 +2,11 @@ package com.aarshinkov.mobile.hotelly.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.os.Build;
-import android.util.DisplayMetrics;
 
-import java.util.Locale;
+import com.aarshinkov.mobile.hotelly.responses.users.UserGetResponse;
+import com.google.gson.Gson;
 
-import static com.aarshinkov.mobile.hotelly.utils.Constants.SHARED_PREF_USER_ID;
+import static com.aarshinkov.mobile.hotelly.utils.Constants.SHARED_PREF_USER;
 
 public class Utils {
 
@@ -28,8 +25,18 @@ public class Utils {
 
     public static Boolean isLoggedIn(SharedPreferences pref) {
 
-        String userId = pref.getString(SHARED_PREF_USER_ID, null);
+        UserGetResponse user = getLoggedUser(pref);
 
-        return userId != null;
+        if (user == null) {
+            return false;
+        }
+
+        return user.getUserId() != null;
+    }
+
+    public static UserGetResponse getLoggedUser(SharedPreferences pref) {
+
+        Gson gson = new Gson();
+        return gson.fromJson(pref.getString(SHARED_PREF_USER, null), UserGetResponse.class);
     }
 }
