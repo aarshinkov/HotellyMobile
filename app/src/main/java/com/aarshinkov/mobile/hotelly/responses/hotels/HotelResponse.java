@@ -1,21 +1,20 @@
 package com.aarshinkov.mobile.hotelly.responses.hotels;
 
-import com.aarshinkov.mobile.hotelly.responses.users.UserGetResponse;
+import com.aarshinkov.mobile.hotelly.responses.users.UserResponse;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
-public class HotelGetResponse implements Serializable {
+public class HotelResponse implements Serializable {
 
     private String hotelId;
     private String name;
     private String description;
-    private AddressGetResponse address;
+    private String city;
+    private String street;
+    private String number;
     private Integer stars;
     private String mainImage;
-    private UserGetResponse owner;
-    private Timestamp createdOn;
-    private Timestamp editedOn;
+    private UserResponse owner;
 
     public String getHotelId() {
         return hotelId;
@@ -41,12 +40,28 @@ public class HotelGetResponse implements Serializable {
         this.description = description;
     }
 
-    public AddressGetResponse getAddress() {
-        return address;
+    public String getCity() {
+        return city;
     }
 
-    public void setAddress(AddressGetResponse address) {
-        this.address = address;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public Integer getStars() {
@@ -65,27 +80,11 @@ public class HotelGetResponse implements Serializable {
         this.mainImage = mainImage;
     }
 
-    public UserGetResponse getOwner() {
+    public UserResponse getOwner() {
         return owner;
     }
 
-    public void setOwner(UserGetResponse owner) {
+    public void setOwner(UserResponse owner) {
         this.owner = owner;
-    }
-
-    public Timestamp getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(Timestamp createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public Timestamp getEditedOn() {
-        return editedOn;
-    }
-
-    public void setEditedOn(Timestamp editedOn) {
-        this.editedOn = editedOn;
     }
 }

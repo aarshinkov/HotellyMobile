@@ -33,7 +33,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/side_nav_bar" />
+                app:srcCompat="@drawable/image_default" />
 
             <TextView
                 android:id="@+id/hotelsNameTV"
@@ -72,29 +72,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/hotelsNameTV"
                 tools:text="City" />
-
-            <TextView
-                android:id="@+id/hotelsCreatedOnLabelTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
-                android:layout_marginBottom="8dp"
-                android:text="Created on"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/hotelsCreatedOnTV" />
-
-            <TextView
-                android:id="@+id/hotelsCreatedOnTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:textSize="12sp"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="22.04.2020" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
