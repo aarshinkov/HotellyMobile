@@ -3,7 +3,7 @@ package com.aarshinkov.mobile.hotelly.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.aarshinkov.mobile.hotelly.responses.users.UserResponse;
+import com.aarshinkov.mobile.hotelly.responses.users.UserGetResponse;
 import com.google.gson.Gson;
 
 import static com.aarshinkov.mobile.hotelly.utils.Constants.SHARED_PREF_USER;
@@ -25,7 +25,7 @@ public class Utils {
 
     public static Boolean isLoggedIn(SharedPreferences pref) {
 
-        UserResponse user = getLoggedUser(pref);
+        UserGetResponse user = getLoggedUser(pref);
 
         if (user == null) {
             return false;
@@ -34,9 +34,16 @@ public class Utils {
         return user.getUserId() != null;
     }
 
-    public static UserResponse getLoggedUser(SharedPreferences pref) {
+    public static UserGetResponse getLoggedUser(SharedPreferences pref) {
 
+        if (pref == null) {
+            return null;
+        }
         Gson gson = new Gson();
-        return gson.fromJson(pref.getString(SHARED_PREF_USER, null), UserResponse.class);
+        String prefUser = pref.getString(SHARED_PREF_USER, null);
+        if (prefUser == null) {
+            return null;
+        }
+        return gson.fromJson(prefUser, UserGetResponse.class);
     }
 }

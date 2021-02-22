@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aarshinkov.mobile.hotelly.R;
 import com.aarshinkov.mobile.hotelly.activities.HotelActivity;
-import com.aarshinkov.mobile.hotelly.responses.hotels.HotelResponse;
+import com.aarshinkov.mobile.hotelly.responses.hotels.HotelGetResponse;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -25,9 +25,9 @@ import static com.aarshinkov.mobile.hotelly.utils.Constants.BASE_URL;
 public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> {
 
     private final LayoutInflater layoutInflater;
-    private final List<HotelResponse> hotels;
+    private final List<HotelGetResponse> hotels;
 
-    public HotelAdapter(Context context, List<HotelResponse> hotels) {
+    public HotelAdapter(Context context, List<HotelGetResponse> hotels) {
         this.layoutInflater = LayoutInflater.from(context);
         this.hotels = hotels;
     }
@@ -42,7 +42,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        HotelResponse hotel = hotels.get(position);
+        HotelGetResponse hotel = hotels.get(position);
 
         holder.getHotelsNameTV().setText(hotel.getName());
 

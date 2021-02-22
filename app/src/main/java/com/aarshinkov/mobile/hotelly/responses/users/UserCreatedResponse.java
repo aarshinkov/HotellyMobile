@@ -1,13 +1,15 @@
 package com.aarshinkov.mobile.hotelly.responses.users;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
-public class UserResponse implements Serializable {
+public class UserCreatedResponse implements Serializable {
 
     private String userId;
     private String email;
     private String firstName;
     private String lastName;
+    private Timestamp createdOn;
 
     public String getFullName() {
         return lastName != null ? firstName + " " + lastName : firstName;
@@ -43,5 +45,13 @@ public class UserResponse implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Timestamp getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(Timestamp createdOn) {
+        this.createdOn = createdOn;
     }
 }

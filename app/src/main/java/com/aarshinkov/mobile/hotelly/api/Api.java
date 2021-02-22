@@ -1,4 +1,4 @@
-package com.aarshinkov.mobile.hotelly.utils;
+package com.aarshinkov.mobile.hotelly.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

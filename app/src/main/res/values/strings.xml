@@ -1,3 +1,51 @@
 <resources>
     <string name="app_name">Hotelly</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_hotels">Hotels</string>
+    <string name="menu_auth_group">Login &amp; Registration</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_register">Register</string>
+    <string name="menu_logout">Logout</string>
+
+    <string name="login_header">Login</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_button">Login</string>
+    <string name="login_success">Welcome, %1$s!</string>
+    <string name="login_bad_credentials">Invalid email/password!</string>
+    <string name="logout_success">Logout successful!</string>
+    <string name="login_register">Don\'t have an account? Register</string>
+
+    <string name="register_header">Registration</string>
+    <string name="register_email">Email</string>
+    <string name="register_password">Password</string>
+    <string name="register_confirm_password">Confirm password</string>
+    <string name="register_first_name">First name</string>
+    <string name="register_last_name">Last name</string>
+    <string name="register_button">Create an account</string>
+    <string name="register_success">Registration successful!</string>
+    <string name="register_login">Have an account? Login</string>
+
+    <string name="hotel_action_edit">Edit</string>
+    <string name="hotel_action_delete">Delete</string>
+
+    <string name="country_bg">Bulgaria</string>
+
+    <string-array name="countries">
+        <item name="bg">Bulgaria</item>
+        <item name="gr">Greece</item>
+        <item name="mk">North Macedonia</item>
+        <item name="ro">Romania</item>
+        <item name="rs">Serbia</item>
+        <item name="tr">Turkey</item>
+    </string-array>
 </resources>

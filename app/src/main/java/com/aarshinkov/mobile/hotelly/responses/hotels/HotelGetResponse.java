@@ -1,20 +1,21 @@
 package com.aarshinkov.mobile.hotelly.responses.hotels;
 
-import com.aarshinkov.mobile.hotelly.responses.users.UserResponse;
+import com.aarshinkov.mobile.hotelly.responses.users.UserGetResponse;
 
 import java.io.Serializable;
 
-public class HotelResponse implements Serializable {
+public class HotelGetResponse implements Serializable {
 
     private String hotelId;
     private String name;
     private String description;
+    private String countryCode;
     private String city;
     private String street;
     private String number;
     private Integer stars;
     private String mainImage;
-    private UserResponse owner;
+    private UserGetResponse owner;
 
     public String getHotelId() {
         return hotelId;
@@ -38,6 +39,14 @@ public class HotelResponse implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
     }
 
     public String getCity() {
@@ -80,11 +89,11 @@ public class HotelResponse implements Serializable {
         this.mainImage = mainImage;
     }
 
-    public UserResponse getOwner() {
+    public UserGetResponse getOwner() {
         return owner;
     }
 
-    public void setOwner(UserResponse owner) {
+    public void setOwner(UserGetResponse owner) {
         this.owner = owner;
     }
 }
