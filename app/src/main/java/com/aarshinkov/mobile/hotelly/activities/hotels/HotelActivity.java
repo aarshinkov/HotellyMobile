@@ -1,4 +1,4 @@
-package com.aarshinkov.mobile.hotelly.activities;
+package com.aarshinkov.mobile.hotelly.activities.hotels;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,13 +11,13 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aarshinkov.mobile.hotelly.R;
+import com.aarshinkov.mobile.hotelly.activities.MainActivity;
 import com.aarshinkov.mobile.hotelly.api.HotelsApi;
 import com.aarshinkov.mobile.hotelly.responses.hotels.HotelGetResponse;
 import com.aarshinkov.mobile.hotelly.utils.Utils;

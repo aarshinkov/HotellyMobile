@@ -3,13 +3,6 @@ package com.aarshinkov.mobile.hotelly.fragments;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +10,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.aarshinkov.mobile.hotelly.R;
-import com.aarshinkov.mobile.hotelly.activities.HotelCreateActivity;
+import com.aarshinkov.mobile.hotelly.activities.hotels.HotelCreateActivity;
 import com.aarshinkov.mobile.hotelly.adapters.HotelAdapter;
 import com.aarshinkov.mobile.hotelly.api.Api;
 import com.aarshinkov.mobile.hotelly.api.HotelsApi;
@@ -38,7 +36,6 @@ public class HotelsFragment extends Fragment {
     private HotelAdapter hotelAdapter;
     private TextView hotelsCountTV;
     private List<HotelGetResponse> hotels;
-    private Button hotelsCheckBtn;
     private Button hotelsAddHotelBtn;
     private ProgressDialog loadingDialog;
 
@@ -50,7 +47,6 @@ public class HotelsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         hotelsCountTV = root.findViewById(R.id.hotelsCountTV);
-//        hotelsCheckBtn = root.findViewById(R.id.hotelsCheckBtn);
         hotelsAddHotelBtn = root.findViewById(R.id.hotelsAddHotelBtn);
 
         hotels = new ArrayList<>();

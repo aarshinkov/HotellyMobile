@@ -14,7 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aarshinkov.mobile.hotelly.R;
-import com.aarshinkov.mobile.hotelly.activities.HotelActivity;
+import com.aarshinkov.mobile.hotelly.activities.hotels.HotelActivity;
 import com.aarshinkov.mobile.hotelly.responses.hotels.HotelGetResponse;
 import com.squareup.picasso.Picasso;
 

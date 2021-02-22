@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Hotelly"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".activities.HotelCreateActivity"></activity>
+        <activity android:name=".activities.hotels.HotelCreateActivity" />
         <activity
             android:name=".activities.MainActivity"
             android:theme="@style/Theme.Hotelly.NoActionBar">
@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.HotelActivity" />
+        <activity android:name=".activities.hotels.HotelActivity" />
     </application>
 
 </manifest>

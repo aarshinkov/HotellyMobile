@@ -1,4 +1,4 @@
-package com.aarshinkov.mobile.hotelly.activities;
+package com.aarshinkov.mobile.hotelly.activities.hotels;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
