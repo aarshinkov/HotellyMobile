@@ -3,6 +3,7 @@ package com.aarshinkov.mobile.hotelly.responses.hotels;
 import com.aarshinkov.mobile.hotelly.responses.users.UserGetResponse;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 public class HotelGetResponse implements Serializable {
 
@@ -16,6 +17,8 @@ public class HotelGetResponse implements Serializable {
     private Integer stars;
     private String mainImage;
     private UserGetResponse owner;
+    private Timestamp createdOn;
+    private Timestamp editedOn;
 
     public String getHotelId() {
         return hotelId;
@@ -95,5 +98,21 @@ public class HotelGetResponse implements Serializable {
 
     public void setOwner(UserGetResponse owner) {
         this.owner = owner;
+    }
+
+    public Timestamp getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(Timestamp createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public Timestamp getEditedOn() {
+        return editedOn;
+    }
+
+    public void setEditedOn(Timestamp editedOn) {
+        this.editedOn = editedOn;
     }
 }

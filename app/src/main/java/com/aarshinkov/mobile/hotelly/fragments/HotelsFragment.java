@@ -20,6 +20,7 @@ import com.aarshinkov.mobile.hotelly.activities.hotels.HotelCreateActivity;
 import com.aarshinkov.mobile.hotelly.adapters.HotelAdapter;
 import com.aarshinkov.mobile.hotelly.api.Api;
 import com.aarshinkov.mobile.hotelly.api.HotelsApi;
+import com.aarshinkov.mobile.hotelly.db.DBHelper;
 import com.aarshinkov.mobile.hotelly.responses.hotels.HotelGetResponse;
 
 import java.util.ArrayList;
@@ -39,9 +40,13 @@ public class HotelsFragment extends Fragment {
     private Button hotelsAddHotelBtn;
     private ProgressDialog loadingDialog;
 
+    private DBHelper dbHelper;
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_hotels, container, false);
+
+        dbHelper = new DBHelper(getContext());
 
         recyclerView = root.findViewById(R.id.hotels);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -66,6 +71,10 @@ public class HotelsFragment extends Fragment {
             @Override
             public void onResponse(Call<List<HotelGetResponse>> call, Response<List<HotelGetResponse>> response) {
                 List<HotelGetResponse> storedHotels = response.body();
+
+                for (HotelGetResponse storedHotel : storedHotels) {
+                    dbHelper.insertHotel(storedHotel);
+                }
 
                 hotels.addAll(storedHotels);
                 hotelAdapter.notifyDataSetChanged();
