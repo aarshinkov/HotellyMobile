@@ -13,7 +13,7 @@ public class HotelGetResponse implements Serializable {
     private String countryCode;
     private String city;
     private String street;
-    private String number;
+    private Integer number;
     private Integer stars;
     private String mainImage;
     private UserGetResponse owner;
@@ -68,11 +68,11 @@ public class HotelGetResponse implements Serializable {
         this.street = street;
     }
 
-    public String getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 

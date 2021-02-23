@@ -40,6 +40,8 @@
 
     <string name="country_bg">Bulgaria</string>
 
+    <string name="error_server">Error communicating with the server. Please try again or contact us!</string>
+
     <string-array name="countries">
         <item name="bg">Bulgaria</item>
         <item name="gr">Greece</item>

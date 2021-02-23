@@ -53,16 +53,16 @@
         app:constraint_referenced_ids="hotelsAddHotelBtn"
         tools:layout_editor_absoluteY="83dp" />
 
-    <!--    <Button-->
-    <!--        android:id="@+id/hotelsCheckBtn"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Check for changes"-->
-    <!--        android:textSize="10sp"-->
-    <!--        app:icon="@drawable/ic_refresh"-->
-    <!--        app:iconSize="16sp"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="@+id/hotelsGuideLeft" />-->
+    <Button
+        android:id="@+id/hotelsCheckBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check for changes"
+        android:textSize="10sp"
+        app:icon="@drawable/ic_refresh"
+        app:iconSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/hotelsGuideLeft" />
 
     <Button
         android:id="@+id/hotelsAddHotelBtn"
@@ -88,5 +88,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="8dp" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/hotelsProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/hotels"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/hotels" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

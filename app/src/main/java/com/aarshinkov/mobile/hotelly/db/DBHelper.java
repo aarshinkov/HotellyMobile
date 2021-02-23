@@ -2,6 +2,7 @@ package com.aarshinkov.mobile.hotelly.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -10,6 +11,9 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.aarshinkov.mobile.hotelly.responses.hotels.HotelGetResponse;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -27,9 +31,8 @@ public class DBHelper extends SQLiteOpenHelper {
             "'city' varchar(400) NOT NULL, " +
             "'street' varchar(300) NOT NULL, " +
             "'number' integer NOT NULL, " +
-            "'stars' integer NOT NULL DEFAULT 0, " +
-            "'main_image' varchar(500) not null, " +
-            "'owner' varchar(100) NOT NULL)";
+            "'stars' integer NOT NULL DEFAULT 0," +
+            "'main_image' varchar(1000) NOT NULL)";
 
     public DBHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -46,6 +49,46 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public List<HotelGetResponse> getHotels() {
+
+        List<HotelGetResponse> hotels = new ArrayList<>();
+        Cursor cursor = null;
+
+        try (SQLiteDatabase db = getReadableDatabase()) {
+
+            String sql = "SELECT hotel_id, name, description, country_code, " +
+                    "city, street, number, stars, main_image FROM hotels";
+
+            cursor = db.rawQuery(sql, null);
+
+            while (cursor.moveToNext()) {
+                HotelGetResponse hotel = new HotelGetResponse();
+                hotel.setHotelId(cursor.getString(0));
+                hotel.setName(cursor.getString(1));
+                hotel.setDescription(cursor.getString(2));
+                hotel.setCountryCode(cursor.getString(3));
+                hotel.setCity(cursor.getString(4));
+                hotel.setStreet(cursor.getString(5));
+                hotel.setNumber(cursor.getInt(6));
+                hotel.setStars(cursor.getInt(7));
+                hotel.setMainImage(cursor.getString(8));
+
+                hotels.add(hotel);
+            }
+
+            return hotels;
+
+        } catch (Exception e) {
+
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+
+        return hotels;
+    }
+
     public boolean insertHotel(HotelGetResponse hotel) {
 
         try (SQLiteDatabase db = getWritableDatabase()) {
@@ -60,7 +103,6 @@ public class DBHelper extends SQLiteOpenHelper {
             cv.put("number", hotel.getNumber());
             cv.put("stars", hotel.getStars());
             cv.put("main_image", hotel.getMainImage());
-            cv.put("owner", hotel.getOwner().getUserId());
 
             long result = db.insertOrThrow(TABLE_HOTELS, null, cv);
 
@@ -73,5 +115,32 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         return false;
+    }
+
+    public void updateHotel(HotelGetResponse hotel) {
+
+        try (SQLiteDatabase db = getWritableDatabase()) {
+
+            ContentValues cv = new ContentValues();
+            cv.put("name", hotel.getName());
+            cv.put("description", hotel.getDescription());
+            cv.put("country_code", hotel.getCountryCode());
+            cv.put("city", hotel.getCity());
+            cv.put("street", hotel.getStreet());
+            cv.put("number", hotel.getNumber());
+            cv.put("stars", hotel.getStars());
+            cv.put("main_image", hotel.getMainImage());
+
+            int result = db.update(TABLE_HOTELS, cv, "hotel_id=?", new String[]{hotel.getHotelId()});
+
+//            if (result <= 0) {
+//                return true;
+//            }
+
+        } catch (SQLException e) {
+            Log.wtf("DB_ERROR", e.getMessage());
+        }
+
+//        return false;
     }
 }
