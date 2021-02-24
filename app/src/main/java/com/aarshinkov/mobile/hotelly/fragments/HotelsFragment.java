@@ -115,9 +115,6 @@ public class HotelsFragment extends Fragment {
 
                         HotelGetResponse dbHotel = response.body();
 
-                        Log.i("Local hotel", hotel.getName());
-                        Log.i("DB hotel", dbHotel.getName());
-
                         if (hasChanges(hotel, dbHotel)) {
 
                             AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();

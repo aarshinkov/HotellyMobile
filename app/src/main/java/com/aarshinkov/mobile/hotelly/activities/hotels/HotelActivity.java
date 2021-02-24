@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -19,8 +20,10 @@ import android.widget.Toast;
 import com.aarshinkov.mobile.hotelly.R;
 import com.aarshinkov.mobile.hotelly.activities.MainActivity;
 import com.aarshinkov.mobile.hotelly.api.HotelsApi;
+import com.aarshinkov.mobile.hotelly.db.DBHelper;
 import com.aarshinkov.mobile.hotelly.responses.hotels.HotelGetResponse;
 import com.aarshinkov.mobile.hotelly.utils.Utils;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
@@ -38,9 +41,12 @@ public class HotelActivity extends AppCompatActivity {
     private RatingBar hotelStarsRB;
     private TextView hotelAddressTV;
     private TextView hotelDescriptionTV;
-    private ProgressDialog dialog;
+
+    private CircularProgressIndicator progress;
 
     private Activity parent;
+
+    private DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,57 +56,43 @@ public class HotelActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Hotel");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        dbHelper = new DBHelper(getApplicationContext());
+
         hotelImageIV = findViewById(R.id.hotelImageIV);
         hotelNameTV = findViewById(R.id.hotelNameTV);
         hotelStarsRB = findViewById(R.id.hotelStarsRB);
         hotelAddressTV = findViewById(R.id.hotelAddressTV);
         hotelDescriptionTV = findViewById(R.id.hotelDescriptionTV);
 
-        dialog = new ProgressDialog(this);
-        dialog.setMessage("Loading hotel...");
-        dialog.show();
+        progress = findViewById(R.id.hotelProgress);
+        progress.setVisibility(View.VISIBLE);
 
         String hotelId = getIntent().getStringExtra("hotelId");
 
-        Retrofit retrofit = getRetrofit();
+        parent = getParent();
 
-        HotelsApi hotelsApi = retrofit.create(HotelsApi.class);
+        HotelGetResponse hotel = dbHelper.getHotel(hotelId);
 
-        hotelsApi.getHotel(hotelId).enqueue(new Callback<HotelGetResponse>() {
-            @Override
-            public void onResponse(Call<HotelGetResponse> call, Response<HotelGetResponse> response) {
+        String imageUrl = BASE_URL + "images/hotels/" + hotel.getMainImage();
+        Picasso.get().load(imageUrl).into(hotelImageIV);
 
-                parent = getParent();
+        hotelNameTV.setText(hotel.getName());
+        hotelStarsRB.setRating(20);
+        hotelStarsRB.setNumStars(hotel.getStars());
 
-                HotelGetResponse hotel = response.body();
+        StringBuilder builder = new StringBuilder();
+        builder.append(hotel.getStreet()).append(" ");
+        builder.append(hotel.getNumber()).append(", ");
+        builder.append(hotel.getCity()).append(", ");
+        builder.append(Utils.getStringResource(getApplicationContext(), "country_" + hotel.getCountryCode()));
 
-                String imageUrl = BASE_URL + "images/hotels/" + hotel.getMainImage();
-                Picasso.get().load(imageUrl).into(hotelImageIV);
+        String addressText = String.valueOf(builder);
 
-                hotelNameTV.setText(hotel.getName());
-                hotelStarsRB.setRating(20);
-                hotelStarsRB.setNumStars(hotel.getStars());
+        hotelAddressTV.setText(addressText);
 
-                StringBuilder builder = new StringBuilder();
-                builder.append(hotel.getStreet()).append(" ");
-                builder.append(hotel.getNumber()).append(", ");
-                builder.append(hotel.getCity()).append(", ");
-                builder.append(Utils.getStringResource(getApplicationContext(), "country_" + hotel.getCountryCode()));
+        hotelDescriptionTV.setText(Html.fromHtml(hotel.getDescription()));
 
-                String addressText = String.valueOf(builder);
-
-                hotelAddressTV.setText(addressText);
-
-                hotelDescriptionTV.setText(Html.fromHtml(hotel.getDescription()));
-
-                dialog.hide();
-            }
-
-            @Override
-            public void onFailure(Call<HotelGetResponse> call, Throwable t) {
-                dialog.hide();
-            }
-        });
+        progress.setVisibility(View.GONE);
     }
 
     @Override
@@ -133,44 +125,12 @@ public class HotelActivity extends AppCompatActivity {
 
                 loadingDialog.show();
 
-                Retrofit retrofit = getRetrofit();
-
-                HotelsApi hotelsApi = retrofit.create(HotelsApi.class);
-
                 String hotelId = getIntent().getStringExtra("hotelId");
 
-                hotelsApi.deleteHotel(hotelId).enqueue(new Callback<Boolean>() {
-                    @Override
-                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-
-                        if (response.code() == 404) {
-                            Toast.makeText(getApplicationContext(), "Hotel not found", Toast.LENGTH_LONG).show();
-                            loadingDialog.hide();
-                            return;
-                        }
-
-                        Boolean result = response.body();
-
-                        if (result) {
-                            loadingDialog.hide();
-                            Toast.makeText(getApplicationContext(), "Hotel deleted successfully!", Toast.LENGTH_LONG).show();
-
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
-//                            onBackPressed();
-//                            parent.findViewById(R.id.nav_view).findViewById(R.id.nav_hotels).performClick();
-                            return;
-                        }
-
-                        Toast.makeText(getApplicationContext(), "Error deleting the hotel!", Toast.LENGTH_LONG).show();
-                    }
-
-                    @Override
-                    public void onFailure(Call<Boolean> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Error deleting the hotel!", Toast.LENGTH_LONG).show();
-                        loadingDialog.hide();
-                    }
-                });
+                dbHelper.deleteHotel(hotelId);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             });
 
             builder.setNegativeButton("Cancel", (dialog, which) -> {

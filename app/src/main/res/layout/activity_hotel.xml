@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <ImageView
             android:id="@+id/hotelImageIV"
             android:layout_width="0dp"
@@ -87,6 +86,17 @@
             app:layout_constraintEnd_toStartOf="@+id/hotelRightGuide"
             app:layout_constraintStart_toStartOf="@+id/hotelLeftGuide"
             app:layout_constraintTop_toBottomOf="@+id/hotelAddressTV" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/hotelProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/hotelDescriptionTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

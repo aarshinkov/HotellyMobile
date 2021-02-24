@@ -89,6 +89,43 @@ public class DBHelper extends SQLiteOpenHelper {
         return hotels;
     }
 
+    public HotelGetResponse getHotel(String hotelId) {
+
+        Cursor cursor = null;
+
+        try (SQLiteDatabase db = getReadableDatabase()) {
+
+            String sql = "SELECT hotel_id, name, description, country_code, " +
+                    "city, street, number, stars, main_image FROM hotels WHERE hotel_id = ?";
+
+            cursor = db.rawQuery(sql, new String[]{hotelId});
+
+            if (cursor.moveToNext()) {
+                HotelGetResponse hotel = new HotelGetResponse();
+                hotel.setHotelId(cursor.getString(0));
+                hotel.setName(cursor.getString(1));
+                hotel.setDescription(cursor.getString(2));
+                hotel.setCountryCode(cursor.getString(3));
+                hotel.setCity(cursor.getString(4));
+                hotel.setStreet(cursor.getString(5));
+                hotel.setNumber(cursor.getInt(6));
+                hotel.setStars(cursor.getInt(7));
+                hotel.setMainImage(cursor.getString(8));
+
+                return hotel;
+            }
+
+        } catch (Exception e) {
+
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+
+        return null;
+    }
+
     public boolean insertHotel(HotelGetResponse hotel) {
 
         try (SQLiteDatabase db = getWritableDatabase()) {
@@ -142,5 +179,19 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
 //        return false;
+    }
+
+    public void deleteHotel(String hotelId) {
+
+        try (SQLiteDatabase db = getWritableDatabase()) {
+
+            String where = "hotel_id=?";
+            String[] whereArgs = {hotelId};
+
+            db.delete(TABLE_HOTELS, where, whereArgs);
+
+        } catch (SQLException e) {
+            Log.wtf(MY_ERROR, e.getMessage());
+        }
     }
 }
