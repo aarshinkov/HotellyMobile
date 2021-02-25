@@ -73,7 +73,12 @@ public class HotelActivity extends AppCompatActivity {
 
         HotelGetResponse hotel = dbHelper.getHotel(hotelId);
 
-        String imageUrl = BASE_URL + "images/hotels/" + hotel.getMainImage();
+        String imageUrl;
+        if (hotel.getMainImage() == null) {
+            imageUrl = BASE_URL + "images/hotels/unknown.jpg";
+        } else {
+            imageUrl = BASE_URL + "images/hotels/" + hotel.getMainImage();
+        }
         Picasso.get().load(imageUrl).into(hotelImageIV);
 
         hotelNameTV.setText(hotel.getName());
@@ -129,6 +134,7 @@ public class HotelActivity extends AppCompatActivity {
 
                 dbHelper.deleteHotel(hotelId);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("page", "hotels");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             });

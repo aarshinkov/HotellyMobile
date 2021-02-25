@@ -10,10 +10,12 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.aarshinkov.mobile.hotelly.requests.hotels.HotelCreateRequest;
 import com.aarshinkov.mobile.hotelly.responses.hotels.HotelGetResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -32,7 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "'street' varchar(300) NOT NULL, " +
             "'number' integer NOT NULL, " +
             "'stars' integer NOT NULL DEFAULT 0," +
-            "'main_image' varchar(1000) NOT NULL)";
+            "'main_image' varchar(1000))";
 
     public DBHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -124,6 +126,34 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         return null;
+    }
+
+    public boolean insertHotel(HotelCreateRequest hotel) {
+
+        try (SQLiteDatabase db = getWritableDatabase()) {
+
+            ContentValues cv = new ContentValues();
+            cv.put("hotel_id", UUID.randomUUID().toString());
+            cv.put("name", hotel.getName());
+            cv.put("description", hotel.getDescription());
+            cv.put("country_code", hotel.getCountryCode());
+            cv.put("city", hotel.getCity());
+            cv.put("street", hotel.getStreet());
+            cv.put("number", hotel.getNumber());
+            cv.put("stars", hotel.getStars());
+            cv.put("main_image", hotel.getMainImage());
+
+            long result = db.insertOrThrow(TABLE_HOTELS, null, cv);
+
+            if (result != -1) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            Log.wtf("DB_ERROR", e.getMessage());
+        }
+
+        return false;
     }
 
     public boolean insertHotel(HotelGetResponse hotel) {

@@ -10,15 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/hotelCreateImageIV"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/side_nav_bar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <!--        <ImageView-->
+        <!--            android:id="@+id/hotelCreateImageIV"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="200dp"-->
+        <!--            android:scaleType="centerCrop"-->
+        <!--            android:src="@drawable/side_nav_bar"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
         <EditText
             android:id="@+id/hotelCreateNameET"
@@ -30,7 +30,7 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
             app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/hotelCreateImageIV" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
             android:id="@+id/hotelCreateCountrySpinner"

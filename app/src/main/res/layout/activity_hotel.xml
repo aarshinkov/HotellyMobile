@@ -53,6 +53,16 @@
             app:layout_constraintTop_toBottomOf="@+id/hotelStarsRB"
             tools:text="Address" />
 
+        <View
+            android:id="@+id/hotelDivider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toStartOf="@+id/hotelRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/hotelAddressTV" />
+
         <TextView
             android:id="@+id/hotelDescriptionTV"
             android:layout_width="0dp"
@@ -68,24 +78,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="16dp" />
+            app:layout_constraintGuide_begin="8dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/hotelRightGuide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_end="16dp" />
-
-        <View
-            android:id="@+id/hotelDivider"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toStartOf="@+id/hotelRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/hotelLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/hotelAddressTV" />
+            app:layout_constraintGuide_end="8dp" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/hotelProgress"

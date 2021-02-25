@@ -35,6 +35,8 @@
     <string name="register_success">Registration successful!</string>
     <string name="register_login">Have an account? Login</string>
 
+    <string name="hotels_title">Hotels</string>
+
     <string name="hotel_action_edit">Edit</string>
     <string name="hotel_action_delete">Delete</string>
 

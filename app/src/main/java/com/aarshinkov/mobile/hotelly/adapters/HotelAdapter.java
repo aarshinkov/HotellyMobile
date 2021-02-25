@@ -46,7 +46,12 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
 
         holder.getHotelsNameTV().setText(hotel.getName());
 
-        String imageUrl = BASE_URL + "images/hotels/" + hotel.getMainImage();
+        String imageUrl;
+        if (hotel.getMainImage() == null) {
+            imageUrl = BASE_URL + "images/hotels/unknown.jpg";
+        } else {
+            imageUrl = BASE_URL + "images/hotels/" + hotel.getMainImage();
+        }
         Picasso.get().load(imageUrl).into(holder.getHotelsImageIV());
 
         holder.getHotelsStarsRB().setRating(20);

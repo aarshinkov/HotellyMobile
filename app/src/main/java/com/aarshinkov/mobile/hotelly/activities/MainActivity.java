@@ -12,12 +12,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.aarshinkov.mobile.hotelly.R;
+import com.aarshinkov.mobile.hotelly.fragments.HotelsFragment;
 import com.aarshinkov.mobile.hotelly.responses.users.UserGetResponse;
 import com.google.android.material.navigation.NavigationView;
 
@@ -90,6 +92,21 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+//        Toast.makeText(getApplicationContext(), "HERE", Toast.LENGTH_LONG).show();
+        Intent intent = getIntent();
+        String page = intent.getStringExtra("page");
+
+        if (page != null) {
+            if (page.equals("hotels")) {
+                navigationView.getMenu().findItem(R.id.nav_hotels).setChecked(true);
+                getSupportActionBar().setTitle(R.string.menu_hotels);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.nav_host_fragment, HotelsFragment.class, null)
+                        .commit();
+            }
+        }
     }
 
     @Override
