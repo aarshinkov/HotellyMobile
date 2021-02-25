@@ -23,7 +23,7 @@ import static com.aarshinkov.mobile.hotelly.utils.Utils.getLoggedUser;
 
 public class HotelCreateActivity extends AppCompatActivity {
 
-//    private ImageView hotelCreateImageIV;
+    //    private ImageView hotelCreateImageIV;
     private EditText hotelCreateNameET;
     private EditText hotelCreateDescriptionET;
     private Spinner hotelCreateCountrySpinner;
@@ -93,6 +93,11 @@ public class HotelCreateActivity extends AppCompatActivity {
 //
 //            }
 
+            if (isFieldsValid()) {
+                loadingDialog.hide();
+                return;
+            }
+
             String name = hotelCreateNameET.getText().toString();
 //            String countryCode = (String) hotelCreateCountrySpinner.getSelectedItem();
             String countryCode = "bg";
@@ -149,5 +154,62 @@ public class HotelCreateActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         onBackPressed();
         return true;
+    }
+
+    private boolean isFieldsValid() {
+
+        boolean hasErrors = false;
+
+        String name = hotelCreateNameET.getText().toString();
+        String city = hotelCreateCityET.getText().toString();
+        String street = hotelCreateStreetET.getText().toString();
+        Integer number = null;
+
+        try {
+            number = Integer.parseInt(hotelCreateNumberET.getText().toString());
+        } catch (NumberFormatException ignore) {
+
+        }
+
+        Integer stars = null;
+        try {
+            stars = Integer.parseInt(hotelCreateStarsET.getText().toString());
+        } catch (NumberFormatException ignore) {
+
+        }
+
+        String description = hotelCreateDescriptionET.getText().toString();
+
+        if (name.isEmpty()) {
+            hotelCreateNameET.setError("Name must not be empty");
+            hasErrors = true;
+        }
+
+        if (city.isEmpty()) {
+            hotelCreateCityET.setError("City must not be empty");
+            hasErrors = true;
+        }
+
+        if (street.isEmpty()) {
+            hotelCreateStreetET.setError("Street must not be empty");
+            hasErrors = true;
+        }
+
+        if (number == null) {
+            hotelCreateNumberET.setError("Number must not be empty");
+            hasErrors = true;
+        }
+
+        if (stars == null) {
+            hotelCreateStarsET.setError("Stars must not be empty");
+            hasErrors = true;
+        }
+
+        if (description.isEmpty()) {
+            hotelCreateDescriptionET.setError("Description must not be empty");
+            hasErrors = true;
+        }
+
+        return hasErrors;
     }
 }

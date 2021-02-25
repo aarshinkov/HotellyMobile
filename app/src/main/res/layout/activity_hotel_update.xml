@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.hotels.HotelCreateActivity">
+    tools:context=".activities.hotels.HotelUpdateActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <!--        <ImageView-->
-        <!--            android:id="@+id/hotelCreateImageIV"-->
+        <!--            android:id="@+id/hotelUpdateImageIV"-->
         <!--            android:layout_width="0dp"-->
         <!--            android:layout_height="200dp"-->
         <!--            android:scaleType="centerCrop"-->
@@ -21,54 +21,54 @@
         <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
         <EditText
-            android:id="@+id/hotelCreateNameET"
+            android:id="@+id/hotelUpdateNameET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="Name"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
+            app:layout_constraintEnd_toStartOf="@+id/hotelUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelUpdateLeftGuide"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
-            android:id="@+id/hotelCreateCountrySpinner"
+            android:id="@+id/hotelUpdateCountrySpinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:entries="@array/countries"
-            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
+            app:layout_constraintEnd_toStartOf="@+id/hotelUpdateRightGuide"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/hotelCreateNameET" />
+            app:layout_constraintStart_toStartOf="@+id/hotelUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/hotelUpdateNameET" />
 
         <EditText
-            android:id="@+id/hotelCreateCityET"
+            android:id="@+id/hotelUpdateCityET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="City"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/hotelCreateCountrySpinner" />
+            app:layout_constraintEnd_toStartOf="@+id/hotelUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/hotelUpdateCountrySpinner" />
 
         <EditText
-            android:id="@+id/hotelCreateStreetET"
+            android:id="@+id/hotelUpdateStreetET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="Street"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/hotelCreateCityET" />
+            app:layout_constraintEnd_toStartOf="@+id/hotelUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/hotelUpdateCityET" />
 
         <EditText
-            android:id="@+id/hotelCreateNumberET"
+            android:id="@+id/hotelUpdateNumberET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -76,12 +76,12 @@
             android:ems="10"
             android:hint="Number"
             android:inputType="number"
-            app:layout_constraintEnd_toStartOf="@+id/hotelCreateCenterGuide"
-            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/hotelCreateStreetET" />
+            app:layout_constraintEnd_toStartOf="@+id/hotelUpdateCenterGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/hotelUpdateStreetET" />
 
         <EditText
-            android:id="@+id/hotelCreateStarsET"
+            android:id="@+id/hotelUpdateStarsET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -89,12 +89,12 @@
             android:ems="10"
             android:hint="Stars"
             android:inputType="number"
-            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/hotelCreateCenterGuide"
-            app:layout_constraintTop_toBottomOf="@+id/hotelCreateStreetET" />
+            app:layout_constraintEnd_toStartOf="@+id/hotelUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelUpdateCenterGuide"
+            app:layout_constraintTop_toBottomOf="@+id/hotelUpdateStreetET" />
 
         <EditText
-            android:id="@+id/hotelCreateDescriptionET"
+            android:id="@+id/hotelUpdateDescriptionET"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -102,39 +102,39 @@
             android:gravity="start|top"
             android:hint="Description"
             android:inputType="textMultiLine"
-            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/hotelCreateNumberET" />
+            app:layout_constraintEnd_toStartOf="@+id/hotelUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/hotelUpdateNumberET" />
 
         <Button
-            android:id="@+id/hotelCreateBtn"
+            android:id="@+id/hotelUpdateBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:backgroundTint="@color/primary"
-            android:text="Create a hotel"
+            android:text="Update hotel"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/hotelCreateRightGuide"
-            app:layout_constraintStart_toStartOf="@+id/hotelCreateLeftGuide"
-            app:layout_constraintTop_toBottomOf="@+id/hotelCreateDescriptionET" />
+            app:layout_constraintEnd_toStartOf="@+id/hotelUpdateRightGuide"
+            app:layout_constraintStart_toStartOf="@+id/hotelUpdateLeftGuide"
+            app:layout_constraintTop_toBottomOf="@+id/hotelUpdateDescriptionET" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/hotelCreateLeftGuide"
+            android:id="@+id/hotelUpdateLeftGuide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="16dp" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/hotelCreateCenterGuide"
+            android:id="@+id/hotelUpdateCenterGuide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/hotelCreateRightGuide"
+            android:id="@+id/hotelUpdateRightGuide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"

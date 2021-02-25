@@ -26,7 +26,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/hotelsImageIV"
+                android:id="@+id/hotelItemImageIV"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:scaleType="centerCrop"
@@ -36,7 +36,7 @@
                 app:srcCompat="@drawable/image_default" />
 
             <TextView
-                android:id="@+id/hotelsNameTV"
+                android:id="@+id/hotelItemNameTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -45,12 +45,12 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/hotelsImageIV"
+                app:layout_constraintStart_toEndOf="@+id/hotelItemImageIV"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Name" />
 
             <RatingBar
-                android:id="@+id/hotelsStarsRB"
+                android:id="@+id/hotelItemStarsRB"
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -60,18 +60,28 @@
                 android:progressTint="#FFBB00"
                 android:rating="10"
                 android:secondaryProgressTint="#FFBB00"
-                app:layout_constraintBottom_toBottomOf="@+id/hotelsCityTV"
-                app:layout_constraintStart_toEndOf="@+id/hotelsImageIV" />
+                app:layout_constraintBottom_toBottomOf="@+id/hotelItemCityTV"
+                app:layout_constraintStart_toEndOf="@+id/hotelItemImageIV" />
 
             <TextView
-                android:id="@+id/hotelsCityTV"
+                android:id="@+id/hotelItemCityTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/hotelsNameTV"
+                app:layout_constraintTop_toBottomOf="@+id/hotelItemNameTV"
                 tools:text="City" />
+
+            <TextView
+                android:id="@+id/hotelItemAddressTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/hotelItemImageIV"
+                tools:text="Address" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -196,7 +196,7 @@ public class DBHelper extends SQLiteOpenHelper {
             cv.put("street", hotel.getStreet());
             cv.put("number", hotel.getNumber());
             cv.put("stars", hotel.getStars());
-            cv.put("main_image", hotel.getMainImage());
+//            cv.put("main_image", hotel.getMainImage());
 
             int result = db.update(TABLE_HOTELS, cv, "hotel_id=?", new String[]{hotel.getHotelId()});
 

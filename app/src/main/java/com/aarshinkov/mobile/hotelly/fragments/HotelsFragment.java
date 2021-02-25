@@ -140,8 +140,11 @@ public class HotelsFragment extends Fragment {
                                 dbHelper.insertHotel(dbHotel);
 
                                 hotels.clear();
+                                hotelAdapter.notifyDataSetChanged();
+
                                 hotels.addAll(dbHelper.getHotels());
                                 hotelAdapter.notifyDataSetChanged();
+                                hotelsCountTV.setText(String.valueOf(hotelAdapter.getItemCount()));
                             });
 
                             alertDialog.show();

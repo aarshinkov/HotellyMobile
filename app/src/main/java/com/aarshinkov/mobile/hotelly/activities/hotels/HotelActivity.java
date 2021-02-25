@@ -112,7 +112,10 @@ public class HotelActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.hotel_action_edit) {
-            Toast.makeText(getApplicationContext(), "EDIT", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), HotelUpdateActivity.class);
+            String hotelId = getIntent().getStringExtra("hotelId");
+            intent.putExtra("hotelId", hotelId);
+            startActivity(intent);
             return false;
         } else if (item.getItemId() == R.id.hotel_action_delete) {
 

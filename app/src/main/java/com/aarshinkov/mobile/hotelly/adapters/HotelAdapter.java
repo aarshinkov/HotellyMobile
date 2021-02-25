@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aarshinkov.mobile.hotelly.R;
 import com.aarshinkov.mobile.hotelly.activities.hotels.HotelActivity;
 import com.aarshinkov.mobile.hotelly.responses.hotels.HotelGetResponse;
+import com.aarshinkov.mobile.hotelly.utils.Utils;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -25,10 +26,12 @@ import static com.aarshinkov.mobile.hotelly.utils.Constants.BASE_URL;
 public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> {
 
     private final LayoutInflater layoutInflater;
+    private final Context context;
     private final List<HotelGetResponse> hotels;
 
     public HotelAdapter(Context context, List<HotelGetResponse> hotels) {
         this.layoutInflater = LayoutInflater.from(context);
+        this.context = context;
         this.hotels = hotels;
     }
 
@@ -42,9 +45,11 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+        holder.setIsRecyclable(false);
+
         HotelGetResponse hotel = hotels.get(position);
 
-        holder.getHotelsNameTV().setText(hotel.getName());
+        holder.getHotelItemNameTV().setText(hotel.getName());
 
         String imageUrl;
         if (hotel.getMainImage() == null) {
@@ -52,11 +57,20 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
         } else {
             imageUrl = BASE_URL + "images/hotels/" + hotel.getMainImage();
         }
-        Picasso.get().load(imageUrl).into(holder.getHotelsImageIV());
+        Picasso.get().load(imageUrl).into(holder.getHotelItemImageIV());
 
-        holder.getHotelsStarsRB().setRating(20);
-        holder.getHotelsStarsRB().setNumStars(hotel.getStars());
-        holder.getHotelsCityTV().setText(hotel.getCity());
+        holder.getHotelItemStarsRB().setRating(20);
+        holder.getHotelItemStarsRB().setNumStars(hotel.getStars());
+        holder.getHotelItemCityTV().setText(hotel.getCity());
+
+        StringBuilder builder = new StringBuilder();
+        builder.append(hotel.getStreet()).append(" ");
+        builder.append(hotel.getNumber()).append(", ");
+        builder.append(Utils.getStringResource(context, "country_" + hotel.getCountryCode()));
+
+        String addressText = String.valueOf(builder);
+
+        holder.getHotelItemAddressTV().setText(addressText);
 
         holder.getCardView().setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), HotelActivity.class);
@@ -74,39 +88,45 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
 
         // The layout wrapper
         private final CardView cardView;
-        private final ImageView hotelsImageIV;
-        private final TextView hotelsNameTV;
-        private final RatingBar hotelsStarsRB;
-        private final TextView hotelsCityTV;
+        private final ImageView hotelItemImageIV;
+        private final TextView hotelItemNameTV;
+        private final RatingBar hotelItemStarsRB;
+        private final TextView hotelItemCityTV;
+        private final TextView hotelItemAddressTV;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.hotel_card);
 
-            hotelsImageIV = itemView.findViewById(R.id.hotelsImageIV);
-            hotelsNameTV = itemView.findViewById(R.id.hotelsNameTV);
-            hotelsStarsRB = itemView.findViewById(R.id.hotelsStarsRB);
-            hotelsCityTV = itemView.findViewById(R.id.hotelsCityTV);
+            hotelItemImageIV = itemView.findViewById(R.id.hotelItemImageIV);
+            hotelItemNameTV = itemView.findViewById(R.id.hotelItemNameTV);
+            hotelItemStarsRB = itemView.findViewById(R.id.hotelItemStarsRB);
+            hotelItemCityTV = itemView.findViewById(R.id.hotelItemCityTV);
+            hotelItemAddressTV = itemView.findViewById(R.id.hotelItemAddressTV);
         }
 
         public CardView getCardView() {
             return cardView;
         }
 
-        public ImageView getHotelsImageIV() {
-            return hotelsImageIV;
+        public ImageView getHotelItemImageIV() {
+            return hotelItemImageIV;
         }
 
-        public TextView getHotelsNameTV() {
-            return hotelsNameTV;
+        public TextView getHotelItemNameTV() {
+            return hotelItemNameTV;
         }
 
-        public RatingBar getHotelsStarsRB() {
-            return hotelsStarsRB;
+        public RatingBar getHotelItemStarsRB() {
+            return hotelItemStarsRB;
         }
 
-        public TextView getHotelsCityTV() {
-            return hotelsCityTV;
+        public TextView getHotelItemCityTV() {
+            return hotelItemCityTV;
+        }
+
+        public TextView getHotelItemAddressTV() {
+            return hotelItemAddressTV;
         }
     }
 }
