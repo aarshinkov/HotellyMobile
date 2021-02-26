@@ -174,6 +174,11 @@ public class HotelCreateActivity extends AppCompatActivity {
         Integer stars = null;
         try {
             stars = Integer.parseInt(hotelCreateStarsET.getText().toString());
+
+            if (stars < 0 || stars > 8) {
+                hotelCreateStarsET.setError("Stars of hotel must be between 0 and 8");
+                hasErrors = true;
+            }
         } catch (NumberFormatException ignore) {
 
         }
