@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -19,20 +21,23 @@ import com.aarshinkov.mobile.hotelly.responses.hotels.HotelGetResponse;
 import com.aarshinkov.mobile.hotelly.utils.Utils;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.aarshinkov.mobile.hotelly.utils.Constants.BASE_URL;
 
-public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> {
+public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> implements Filterable {
 
     private final LayoutInflater layoutInflater;
     private final Context context;
-    private final List<HotelGetResponse> hotels;
+    private final List<HotelGetResponse> dataFull;
+    private final List<HotelGetResponse> data;
 
-    public HotelAdapter(Context context, List<HotelGetResponse> hotels) {
+    public HotelAdapter(Context context, List<HotelGetResponse> data) {
         this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
-        this.hotels = hotels;
+        this.data = data;
+        dataFull = new ArrayList<>(data);
     }
 
     @NonNull
@@ -47,7 +52,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
 
         holder.setIsRecyclable(false);
 
-        HotelGetResponse hotel = hotels.get(position);
+        HotelGetResponse hotel = data.get(position);
 
         holder.getHotelItemNameTV().setText(hotel.getName());
 
@@ -81,8 +86,47 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return hotels.size();
+        return data.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return hotelsFilter;
+    }
+
+    private Filter hotelsFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<HotelGetResponse> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(dataFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (HotelGetResponse hotel : dataFull) {
+                    String name = hotel.getName().toLowerCase();
+                    String city = hotel.getCity().toLowerCase();
+                    String street = hotel.getStreet().toLowerCase();
+                    if (name.contains(filterPattern) || city.contains(filterPattern) || street.contains(filterPattern)) {
+                        filteredList.add(hotel);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            data.clear();
+            data.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 

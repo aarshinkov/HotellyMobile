@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,7 @@ import retrofit2.Retrofit;
 
 public class HotelsFragment extends Fragment {
 
+    private SearchView hotelsSV;
     private RecyclerView recyclerView;
     private HotelAdapter hotelAdapter;
     private TextView hotelsCountTV;
@@ -57,6 +59,7 @@ public class HotelsFragment extends Fragment {
 
         dbHelper = new DBHelper(getContext());
 
+        hotelsSV = root.findViewById(R.id.hotelsSV);
         recyclerView = root.findViewById(R.id.hotels);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -87,6 +90,9 @@ public class HotelsFragment extends Fragment {
                 List<HotelGetResponse> localHotels = dbHelper.getHotels();
 
                 hotels.addAll(localHotels);
+
+                hotelAdapter = new HotelAdapter(getContext(), hotels);
+                recyclerView.setAdapter(hotelAdapter);
                 hotelAdapter.notifyDataSetChanged();
                 hotelsCountTV.setText(String.valueOf(hotelAdapter.getItemCount()));
                 progress.setVisibility(View.GONE);
@@ -165,6 +171,19 @@ public class HotelsFragment extends Fragment {
         hotelsAddHotelBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), HotelCreateActivity.class);
             startActivity(intent);
+        });
+
+        hotelsSV.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                hotelAdapter.getFilter().filter(newText);
+                return false;
+            }
         });
 
         return root;
