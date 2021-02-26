@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,7 +68,7 @@ public class HotelUpdateActivity extends AppCompatActivity {
         hotelUpdateStreetET.setText(hotel.getStreet());
         hotelUpdateNumberET.setText(String.valueOf(hotel.getNumber()));
         hotelUpdateStarsET.setText(String.valueOf(hotel.getStars()));
-        hotelUpdateDescriptionET.setText(hotel.getDescription());
+        hotelUpdateDescriptionET.setText(Html.fromHtml(hotel.getDescription()));
 
         hotelUpdateBtn.setOnClickListener(v -> {
 
