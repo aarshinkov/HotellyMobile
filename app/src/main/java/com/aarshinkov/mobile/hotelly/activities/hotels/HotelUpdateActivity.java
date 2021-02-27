@@ -47,7 +47,7 @@ public class HotelUpdateActivity extends AppCompatActivity {
         dbHelper = new DBHelper(getApplicationContext());
 
         hotelUpdateNameET = findViewById(R.id.hotelUpdateNameET);
-        hotelUpdateCountrySpinner = findViewById(R.id.hotelUpdateCountrySpinner);
+//        hotelUpdateCountrySpinner = findViewById(R.id.hotelUpdateCountrySpinner);
         hotelUpdateCityET = findViewById(R.id.hotelUpdateCityET);
         hotelUpdateStreetET = findViewById(R.id.hotelUpdateStreetET);
         hotelUpdateNumberET = findViewById(R.id.hotelUpdateNumberET);

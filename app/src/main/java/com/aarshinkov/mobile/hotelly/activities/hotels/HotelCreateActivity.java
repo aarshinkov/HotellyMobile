@@ -53,7 +53,7 @@ public class HotelCreateActivity extends AppCompatActivity {
 
 //        hotelCreateImageIV = findViewById(R.id.hotelCreateImageIV);
         hotelCreateNameET = findViewById(R.id.hotelCreateNameET);
-        hotelCreateCountrySpinner = findViewById(R.id.hotelCreateCountrySpinner);
+//        hotelCreateCountrySpinner = findViewById(R.id.hotelCreateCountrySpinner);
         hotelCreateCityET = findViewById(R.id.hotelCreateCityET);
         hotelCreateStreetET = findViewById(R.id.hotelCreateStreetET);
         hotelCreateNumberET = findViewById(R.id.hotelCreateNumberET);
